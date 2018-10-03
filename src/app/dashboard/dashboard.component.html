@@ -1,3 +1,36 @@
-<p>
-  dashboard works!
-</p>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand" href="#">GoldDigger</a>
+  <button class="navbar-toggler collapsed" id="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+    aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="navbar-collapse collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" [ngClass]="titleName=='scrape'?'active':''">
+        <a class="nav-link" (click)="closeMenu('scrape')" [routerLink]="['/dashboard/scrap']">Scrape</a>
+      </li>
+      <li class="nav-item" [ngClass]="titleName=='details'?'active':''">
+        <a class="nav-link" (click)="closeMenu('details')" [routerLink]="['/dashboard/details']">Details</a>
+      </li>
+    </ul>
+    <div>
+      <div class="row">
+        <div class="col-sm-6 hide-on-sm">
+          <div style="color: white;width: 167px;margin-top: 8px;" class=""> Hi Admin
+            <fa name="user" ng-reflect-name="user">
+              <i aria-hidden="true" class="fa fa-user" ng-reflect-klass="fa fa-user" ng-reflect-ng-class=""></i>
+            </fa>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <button (click)="logOut()" class="btn btn-outline-light float-sm-right my-2 my-sm-0" type="submit">Logout</button>
+        </div>
+        <div></div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+<div style="margin-top: 50px;"></div>
+<router-outlet></router-outlet>

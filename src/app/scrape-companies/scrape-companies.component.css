@@ -1,0 +1,59 @@
+.container h2{
+    text-align: center;
+}
+.container{
+    margin-top: 75px;
+}
+form .row{
+    margin: 20px;
+}
+form{
+    /* margin-top:50px; */
+}
+
+.hide-on-sm{
+    display: flex;
+}
+.show-on-sm{
+    display: none;
+}
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .hide-on-sm{
+        display: none;
+    }
+    .show-on-sm{
+        display: block;
+    }
+} 
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    body{
+        background: blue;
+    }
+} 
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    body{
+        background: green;
+    }
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    body{
+        background: orange;
+    }
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    body{
+        background: cyan;
+    }
+}
+input{
+    margin-top: 15px;
+}

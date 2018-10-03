@@ -2,22 +2,18 @@
   <div class="row">
     <div class="mx-auto col-md-4 col-md-offset-4" id="login_block">
       <p class="text-center" id="login_title">SIGN IN TO CONTINUE.</p>
-      <div class="alert alert-danger d-none" id="login_error"> </div>
-      <form role="form" method="POST">
-        <input type="hidden" name="csrfmiddlewaretoken" value="knqF4GQP09VYKGHA45CcCa1NXl39blw2TMNFcBfcaWkzEfpukqauJbiHeFboDs7R">
-        <input type="hidden" name="next" value="/">
-        <div class="form-group has-feedback">
-          <input type="email" name="email" class="form-control" placeholder="Enter email">
-          <span class="form-control-feedback"></span>
-          <small class="form-text d-none"></small>
-        </div>
-        <div class="form-group has-feedback">
-          <input type="password" name="password" class="form-control" placeholder="Password">
-          <span class="form-control-feedback"></span>
-          <small class="form-text d-none"></small>
-        </div>
-        <button type="submit" class="btn btn-block btn-primary">Login</button>
-      </form>
+      <div class="alert alert-danger" *ngIf="loginFailed">Please provide valid credentials</div>
+      <div class="form-group has-feedback">
+        <input type="email" name="email" [(ngModel)]="username" class="form-control" placeholder="Enter email">
+        <span class="form-control-feedback"></span>
+        <small class="form-text d-none"></small>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="password" name="password" [(ngModel)]="password" class="form-control" placeholder="Password">
+        <span class="form-control-feedback"></span>
+        <small class="form-text d-none"></small>
+      </div>
+      <button type="submit" class="btn btn-block btn-primary" (click)="authenticate()">Login</button>
       <div class="text-center" style="margin-top: 20px;">
         <span>© 2018 - GoldDigger</span>
       </div>
