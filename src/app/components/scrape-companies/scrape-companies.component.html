@@ -1,0 +1,84 @@
+<div class="container">
+    <h2>Scrape Companies</h2>
+
+
+    <ul class="nav nav-tabs hide-on-sm" style="cursor: pointer;">
+        <li class="nav-item">
+            <a class="nav-link" [ngClass]="tabStatus=='search'?'active':''" (click)="tabStatus='search'">Search by company name</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" [ngClass]="tabStatus=='upload'?'active':''" (click)="tabStatus='upload'">Upload CSV</a>
+        </li>
+    </ul>
+    <select class="form-control show-on-sm" [(ngModel)]="tabStatus">
+        <option value="search">Search by company name</option>
+        <option value="upload">Upload CSV</option>
+    </select>
+
+
+
+
+    <form autocomplete="off">
+        <div class="form-row">
+            <div class="col-md-6" *ngIf="tabStatus=='search'">
+                <input type="text" (change)="showErrorMessages()" [(ngModel)]="companyNameModel" [ngClass]="{'form-input-error':companyNameModelErr!=''}"
+                    name="companyName" class="form-control" placeholder="Company Name">
+                <p class="form-msg-error">{{companyNameModelErr}}</p>
+            </div>
+            <div class="col-md-6">
+                <input type="text" (change)="showErrorMessages()" [(ngModel)]="emailModel" [ngClass]="{'form-input-error':emailModelErr!=''}"
+                    name="email" class="form-control" placeholder="E-mail">
+                <p class="form-msg-error">{{emailModelErr}}</p>
+            </div>
+            <div class="col-md-6" *ngIf="tabStatus=='search'">
+                <input class="form-control" (change)="showErrorMessages()" style="cursor: pointer;" (click)="lgModal.show()" [ngClass]="{'form-input-error':stateModelErr!=''}"
+                    name="statess" [(ngModel)]="stateModel" placeholder="Select states" autocomplete="false" readonly />
+                <p class="form-msg-error">{{stateModelErr}}</p>
+            </div>
+            <div class="col-md-6" *ngIf="tabStatus=='upload'">
+                <div class="custom-file" style="margin:15px 0px;">
+                    <input type="file" class="custom-file-input" id="customFile">
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                </div>
+            </div>
+
+
+
+        </div>
+    </form>
+    <div style="margin-top: 15px;">
+        <button type="button" class="btn btn-primary" style="margin-right: 15px;background: #23b7e5 !important;" (click)="handleSubmit()">Submit</button>
+        <button type="button" class="btn btn-secondary" (click)="handleClear()">Clear</button>
+    </div>
+
+    <div (onHide)="onHide()" bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 id="dialog-sizes-name1" class="modal-title pull-left">Select States</h4>
+                    <button type="button" class="close pull-right" (click)="lgModal.hide()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div style="padding-bottom: 20px;">
+                        <input class="form-control" [(ngModel)]='search' placeholder="Search" />
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <label *ngIf="!search" class="col-md-3 col-sm-2 d-block checkbox-inline">
+                            <input style="margin-right: 10px;" [(ngModel)]="selectAll" (click)="handleSelectAll(selectAll)" type="checkbox" value="">Select All
+                        </label>
+                        <label *ngFor="let state of states|filter:search" class="col-md-3 col-sm-2 d-block checkbox-inline">
+                            <input style="margin-right: 10px;" [(ngModel)]="state.value.action" type="checkbox" value="{{state.key}}">{{state.value.name}}
+                        </label>
+                        <p class="col-md-12" *ngIf="(states|filter:search).length==0"> No matches found. </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

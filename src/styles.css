@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+.form-msg-error{
+    color: darkred;
+    font-size: 11px;
+}
+.form-input-error{
+    border: 1px solid darkred;
+    box-shadow: 0 0 2px darkred;
+}

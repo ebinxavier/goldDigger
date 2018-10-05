@@ -11,20 +11,20 @@
         <a class="nav-link" (click)="closeMenu('scrape')" [routerLink]="['/dashboard/scrap']">Scrape</a>
       </li>
       <li class="nav-item" [ngClass]="titleName=='details'?'active':''">
-        <a class="nav-link" (click)="closeMenu('details')" [routerLink]="['/dashboard/details']">Details</a>
+        <a class="nav-link" (click)="closeMenu('details')" [routerLink]="['/dashboard/details']">Translations</a>
       </li>
     </ul>
     <div>
       <div class="row">
-        <div class="col-sm-6 hide-on-sm">
-          <div style="color: white;width: 167px;margin-top: 8px;" class=""> Hi Admin
-            <fa name="user" ng-reflect-name="user">
+        <div class="hide-on-sm">
+          <div style="color: white;margin: 8px 15px 0px 0px;" class=""> Hello Admin
+            <fa name="user" ng-reflect-name="user"> 
               <i aria-hidden="true" class="fa fa-user" ng-reflect-klass="fa fa-user" ng-reflect-ng-class=""></i>
             </fa>
           </div>
         </div>
-        <div class="col-sm-6">
-          <button (click)="logOut()" class="btn btn-outline-light float-sm-right my-2 my-sm-0" type="submit">Logout</button>
+        <div class="">
+          <button (click)="logOut()" class="btn btn-outline-light float-sm-right my-2 my-sm-0" style="margin-right:15px" type="submit">Logout</button>
         </div>
         <div></div>
       </div>

@@ -1,0 +1,26 @@
+<div class="container">
+  <ul class="nav nav-tabs hide-on-sm" style="cursor: pointer;">
+    <li class="nav-item">
+      <a class="nav-link" [ngClass]="tabStatus=='ra-tab'?'active':''" (click)="tabStatus='ra-tab'">RA Translations</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [ngClass]="tabStatus=='ss-tab'?'active':''" (click)="tabStatus='ss-tab'">State Status Translations</a>
+    </li>
+  </ul>
+  <select class="form-control show-on-sm" [(ngModel)]="tabStatus">
+    <option value="ra-tab">RA Translations</option>
+    <option value="ss-tab">State Status Translations</option>
+  </select>
+  <ul class="nav nav-tabs hide-on-sm" style="cursor: pointer;">
+    <li class="nav-item">
+      <a class="nav-link" [ngClass]="tabStatus=='ra-tab'?'active':''" (click)="tabStatus='ra-tab'">RA Translations</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [ngClass]="tabStatus=='ss-tab'?'active':''" (click)="tabStatus='ss-tab'">State Status Translations</a>
+    </li>
+  </ul>
+  <select class="form-control show-on-sm" [(ngModel)]="tabStatus">
+    <option value="ra-tab">RA Translations</option>
+    <option value="ss-tab">State Status Translations</option>
+  </select>
+</div>

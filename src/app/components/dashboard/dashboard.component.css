@@ -1,0 +1,23 @@
+.navbar-brand{
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.hide-on-sm{
+    display: flex;
+}
+.show-on-sm{
+    display: none;
+}
+.bg-dark {
+    background-color: #23b7e5 !important;
+}
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 575px) {
+    .hide-on-sm{
+        display: none;
+    }
+    .show-on-sm{
+        display: block;
+    }
+} 
