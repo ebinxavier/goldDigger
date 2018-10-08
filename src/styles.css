@@ -7,3 +7,9 @@
     border: 1px solid darkred;
     box-shadow: 0 0 2px darkred;
 }
+.nav-link.active{
+    color: #007bff !important;
+}
+.nav-item {
+    color: #075fbd;
+}

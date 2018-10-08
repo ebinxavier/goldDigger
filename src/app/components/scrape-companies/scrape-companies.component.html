@@ -1,5 +1,8 @@
+<div class="loader loader-default" [ngClass]="{'is-active':HTTPActivity}"></div>
+
+
 <div class="container">
-    <h2>Scrape Companies</h2>
+    <h2>Scrape Companies </h2>
 
 
     <ul class="nav nav-tabs hide-on-sm" style="cursor: pointer;">
@@ -47,7 +50,7 @@
         </div>
     </form>
     <div style="margin-top: 15px;">
-        <button type="button" class="btn btn-primary" style="margin-right: 15px;background: #23b7e5 !important;" (click)="handleSubmit()">Submit</button>
+        <button type="button" class="btn btn-primary" style="margin-right: 15px;" (click)="handleSubmit()">Submit</button>
         <button type="button" class="btn btn-secondary" (click)="handleClear()">Clear</button>
     </div>
 

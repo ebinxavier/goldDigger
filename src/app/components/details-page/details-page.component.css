@@ -8,6 +8,13 @@
 .show-on-sm{
     display: none;
 }
+
+.subTabsBody{
+    padding: 15px;
+    border: 1px solid #dedede;
+    margin-top: -1px;
+    margin-bottom: 15px;
+}
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
     .hide-on-sm{

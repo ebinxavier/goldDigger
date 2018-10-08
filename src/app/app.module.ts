@@ -1,7 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+
+import { HTTPListener, HTTPStatus } from './services/interceptor.service';
+
+const RxJS_Services = [HTTPListener, HTTPStatus];
 
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { AlertModule, ModalModule } from 'ngx-bootstrap';
@@ -15,6 +20,8 @@ import { DetailsPageComponent } from './components/details-page/details-page.com
 import { RaTranslationsComponent } from './components/ra-translations/ra-translations.component';
 import { SelectStateComponent } from './modals/select-state/select-state.component';
 import { FilterPipe } from './pipes/filter.pipe';
+
+
 
 @NgModule({
   declarations: [
@@ -40,7 +47,14 @@ import { FilterPipe } from './pipes/filter.pipe';
   entryComponents:[
     SelectStateComponent
   ],
-  providers: [],
+  providers: [
+    ...RxJS_Services,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HTTPListener,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

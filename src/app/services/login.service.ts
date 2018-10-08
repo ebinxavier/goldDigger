@@ -6,13 +6,13 @@ import { Injectable } from '@angular/core';
 export class LoginService {
 
   constructor() { }
-  private user = { name: "ebin", pass: "qburst" };
+  private user = { name: "ebin@gmail.com", pass: "qburst" };
   /**
    * authenticateUser
    */
   public authenticateUser(username, password) {
     if (username == this.user.name && password == this.user.pass) {
-      localStorage.setItem('loggedIn', 'true');
+      localStorage.setItem('loggedInTocken', 'true');
       return true;
     }
     return false;
@@ -21,7 +21,7 @@ export class LoginService {
    * logOut
    */
   public logOut() {
-    localStorage.removeItem('loggedIn');
+    localStorage.removeItem('loggedInTocken');
   }
 
   /**

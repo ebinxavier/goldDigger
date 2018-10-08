@@ -7,7 +7,7 @@ export class AuthService {
 
   constructor() { }
   public isLoggedIn() {
-    if (localStorage.getItem('loggedIn') == "true")
+    if (!!localStorage.getItem('loggedInTocken'))
       return true;
     return false;
   }

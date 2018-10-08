@@ -12,4 +12,7 @@ export class ScrapeCompaniesService {
   getStateListing(): Observable<any> {
     return this.http.get("assets/states.json");
   }
+  getDetails(){
+    return this.http.get("https://jsonplaceholder.typicode.com/photos");
+  }
 }

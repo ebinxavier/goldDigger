@@ -11,16 +11,126 @@
     <option value="ra-tab">RA Translations</option>
     <option value="ss-tab">State Status Translations</option>
   </select>
-  <ul class="nav nav-tabs hide-on-sm" style="cursor: pointer;">
-    <li class="nav-item">
-      <a class="nav-link" [ngClass]="tabStatus=='ra-tab'?'active':''" (click)="tabStatus='ra-tab'">RA Translations</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" [ngClass]="tabStatus=='ss-tab'?'active':''" (click)="tabStatus='ss-tab'">State Status Translations</a>
-    </li>
-  </ul>
-  <select class="form-control show-on-sm" [(ngModel)]="tabStatus">
-    <option value="ra-tab">RA Translations</option>
-    <option value="ss-tab">State Status Translations</option>
-  </select>
+
+  <div *ngIf="tabStatus=='ra-tab'" class="subTabsBody" style="padding: 15px 0 0 0;">
+    <ul class="nav nav-tabs hide-on-sm" style="cursor: pointer;">
+      <li class="nav-item">
+        <a class="nav-link" [ngClass]="tabStatusL1=='obs-ra-tab'?'active':''" (click)="tabStatusL1='obs-ra-tab'">Observed RA names</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [ngClass]="tabStatusL1=='trans-ra-tab'?'active':''" (click)="tabStatusL1='trans-ra-tab'">Translated RA names</a>
+      </li>
+    </ul>
+    <select class="form-control show-on-sm" [(ngModel)]="tabStatusL1">
+      <option value="obs-ra-tab">Observed RA names</option>
+      <option value="trans-ra-tab">Translated RA names</option>
+    </select>
+
+    <div *ngIf="tabStatusL1=='obs-ra-tab'" class="subTabsBody" style="margin-bottom:0px ">
+
+      <div class="btn-group" role="group" aria-label="Filter" style="margin: 20px 0;">
+        <button type="button" [ngClass]="{'active':obsRaFilter=='all'}" (click)="obsRaFilter='all'" class="btn btn-primary ">All</button>
+        <button type="button" [ngClass]="{'active':obsRaFilter=='unMatched'}" (click)="obsRaFilter='unMatched'" class="btn btn-primary">Un Matched</button>
+        <button type="button" [ngClass]="{'active':obsRaFilter=='matched'}" (click)="obsRaFilter='matched'" class="btn btn-primary">Matched</button>
+      </div>
+
+      <table class="table table-hover table-bordered">
+        <thead>
+          <tr>
+            <th scope="col" (click)="handleSortHeaderClick()" style="cursor: pointer;">Name
+
+              <!-- <fa name="sort">
+                    <i aria-hidden="true" class="fa fa-sort-up" ></i>
+                  </fa> -->
+
+              <fa [name]="sortOrderClass" style="margin-left: 20px;">
+                <i aria-hidden="true" class="fa fa-sort" [ngClass]="fa-sort" ng-reflect-klass="fa fa-sort" ng-reflect-ng-class=""></i>
+              </fa>
+
+            </th>
+            <th scope="col">Matched</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr *ngFor="let agent of response.registered_agents">
+            <td>
+              {{agent.name}}
+            </td>
+            <td>
+              <span style="color: #07C;cursor: pointer;" (click)="setRA(agent.name);lgModal.show()">{{agent.mapped_name}}</span>
+              <button *ngIf="agent.is_mapped" data-toggle="tooltip" title="Delete Mapping" class="btn-danger btn btn-sm" style="margin-left: 20%">
+                <fa name="trash" ng-reflect-name="trash">
+                  <i aria-hidden="true" class="fa fa-trash" ng-reflect-klass="fa fa-trash" ng-reflect-ng-class=""></i>
+                </fa>
+              </button>
+              <button *ngIf="!agent.is_mapped" data-toggle="tooltip" title="Match RA" class="btn-primary btn" (click)="setRA(agent.name);lgModal.show()">
+                Match
+              </button>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+
+      <ul class="pagination justify-content-end">
+        <li class="page-item disabled">
+          <a class="page-link">Prev</a>
+        </li>
+        <li class="page-item active" (click)="updateTable()">
+          <a class="page-link">1</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link">2</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link">3</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link">Next</a>
+        </li>
+      </ul>
+
+    </div>
+
+
+    <!-- Modal popup here -->
+    <div (onHide)="onHide()" bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 id="dialog-sizes-name1" class="modal-title pull-left">Match RA ({{selectedRA}})</h4>
+            <button type="button" class="close pull-right" (click)="lgModal.hide()" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div style="padding-bottom: 20px;">
+              <input class="form-control" list="browsers" placeholder="Type to search" />
+              <datalist id="browsers">
+                <option value="Internet Explorer">
+                <option value="Firefox">
+                <option value="Chrome">
+                <option value="Opera">
+                <option value="Safari">
+              </datalist>
+            </div>
+            <hr>
+            <div>
+
+              <button class="btn-primary btn pull-right">
+                Match
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+
+
+
 </div>

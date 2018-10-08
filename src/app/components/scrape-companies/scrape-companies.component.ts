@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
+
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { SelectStateComponent } from '../../modals/select-state/select-state.component';
@@ -26,11 +27,15 @@ export class ScrapeCompaniesComponent implements OnInit {
     public companyNameModelErr = '';
     public submitted = false;
     public selectAll = false;
+    HTTPActivity: boolean = false;
 
     @Output() setTitleTab = new EventEmitter<string>();
 
     bsModalRef: BsModalRef;
     constructor(private modalService: BsModalService, private service: ScrapeCompaniesService, private login: LoginService) { }
+
+
+
 
 
 
@@ -60,7 +65,7 @@ export class ScrapeCompaniesComponent implements OnInit {
         let selectedStates = this.states
             .filter(s => s.value.action);
         let stateNames = selectedStates.map(s => s.value.name);
-        if (stateNames.length <= 4 && stateNames.length>0) {
+        if (stateNames.length <= 4 && stateNames.length > 0) {
             this.stateModel = stateNames.reduce((acc, curr) => {
                 return acc += ',' + curr;
             })
@@ -99,13 +104,23 @@ export class ScrapeCompaniesComponent implements OnInit {
             else this.stateModelErr = '';
         }
 
-        return this.companyNameModelErr && this.stateModelErr && this.emailModelErr;
+        return this.companyNameModelErr.length || this.stateModelErr.length || this.emailModelErr.length;
     }
 
 
     handleSubmit() {
         this.submitted = true;
-        this.showErrorMessages();
+
+        if (!this.showErrorMessages()) {
+            this.HTTPActivity = true;
+
+
+            this.service.getDetails().subscribe(e => {
+                this.HTTPActivity = false;
+                // console.log(e);
+            })
+        }
+
 
     }
     handleClear() {
